@@ -1,49 +1,94 @@
 <template>
+
     <div class="top-area">
-        <div>
-            list object
+        <div class="item">
+                <div class="item-icon"  @click="appConfig.currentFocus.moveUp(); appConfig.currentFocus.getLayer().batchDraw();">
+                <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                    <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                </svg>
+                </div>
+                <div class="item-icon option"  @click="appConfig.currentFocus.moveDown(); appConfig.currentFocus.getLayer().batchDraw();">
+                    <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                        <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                    </svg>
+                </div>
+                <div class="item-icon option"  @click="duplicateObject()">
+                <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                    <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                </svg>
+                </div>
+                <div class="item-icon option"  @click="removeObject()">
+                    <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                        <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                    </svg>
+                </div>
+             
         </div>
-        <div>
-            <button :disabled="shouldDisableMoveUp()" @click="appConfig.currentFocus.moveUp(); appConfig.currentFocus.getLayer().batchDraw();">Move up</button>
+        <div class="item">
+                 <div class="item-icon ">
+                    <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                        <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                    </svg>
+                </div>
+                <div class="item-icon option"  @click="rotationLeft()">
+                    <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                        <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                    </svg>
+                </div>
+                <!-- <input v-if="appConfig.currentFocus" type="number" step="1" v-model="rotation" style="max-width: 4em; padding: .5em; border: 1px solid rgba(0,0,0,0.54); border-radius: .25em;"> -->
+                <div class="item-icon option"  @click="rotationRight()">
+                    <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                        <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                    </svg>
+                </div>
+                <div v-if="appConfig.currentFocus">
+                    <div>
+                        <div class="item-icon">
+                            <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                                <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <input class="inputSmall" placeholder="100%" type="text" v-model="opacity">
+                        </div>
+                    </div>
+                </div>
         </div>
-        <div>
-            <button :disabled="shouldDisableMoveDown()" @click="appConfig.currentFocus.moveDown(); appConfig.currentFocus.getLayer().batchDraw();">Move down</button>
+        <div class="item">
+                 <div class="item-icon ">
+                    <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                        <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                    </svg>
+                </div>
+                <div class="item-icon option"  @click="renameProject">
+                    <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                        <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                    </svg>
+                </div>
+                <div class="item-icon option"  @click="openProject">
+                    <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                        <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                    </svg>
+                </div>
+                <div class="item-icon option"  @click="saveProject">
+                    <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                        <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                    </svg>
+                </div>
+                <div class="item-icon option"  @click="closeProject">
+                    <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                        <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                    </svg>
+                </div>
+                <div class="item-icon option"  @click="exportProject">
+                    <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                        <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                    </svg>
+                </div>
         </div>
-        <div>
-            rotation
-            <button :disabled="!appConfig.currentFocus" @click="rotationLeft()">Left</button>
-            <input v-if="appConfig.currentFocus" type="number" step="1" v-model="rotation"      style="max-width: 4em; padding: .5em; border: 1px solid rgba(0,0,0,0.54); border-radius: .25em;">
-            <button :disabled="!appConfig.currentFocus" @click="rotationRight()">Right</button>
-        </div>
-        <div>
-            opacity
-            <input v-if="appConfig.currentFocus" type="number" step="0.01" max="1" min="0" v-model="opacity" style="max-width: 4em; padding: .5em; border: 1px solid rgba(0,0,0,0.54); border-radius: .25em;">
-        </div>
-        <div>
-            duplicate shape
-            <button :disabled="!appConfig.currentFocus" @click="duplicateObject()">Duplicate Shape</button>
-        </div>
-        <div>
-            delete shape
-            <button :disabled="!appConfig.currentFocus" @click="removeObject()">Remove</button>
-        </div>
-        <div style="display: flex;">
-            <div>
-                <button @click="renameProject">name project</button> 
-            </div>
-            <div>
-                <button @click="openProject">open project</button>
-            </div>
-            <div>
-                <button @click="saveProject">save</button>
-            </div>
-            <div>
-                <button @click="closeProject">close</button>
-            </div>
-            <div>
-                <button @click="exportProject">export</button>
-            </div>
-        </div>
+       
+            
+        
     </div>
 </template>
 
@@ -167,11 +212,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less">
     .top-area {
         display: flex;
+        flex-direction: column;
     }
-    .top-area div {
-        margin-right: 24px;
+    .inputSmall {
+        width: 80px !important;
     }
 </style>

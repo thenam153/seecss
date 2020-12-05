@@ -21,5 +21,19 @@ export default {
     /* display: flex; */
     height: 100vh;
     width: 100vw;
+    display: flex;
+
   }
+  body{
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+   
+  }
+  * {
+    font-family: Roboto !important;
+   font-size: 13px  !important;
+  }
+ 
 </style>

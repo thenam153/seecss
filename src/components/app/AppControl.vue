@@ -1,46 +1,132 @@
 <template>
-    <div>
-        <div>
-            <div>
-                <!-- <input type="text" :value="appConfig.mainConfig.width">
-                <input type="text" :value="appConfig.mainConfig.height"> -->
-                <Input type="number" :label="'Width'" input-id="width" :get-value="getValue" :set-value="setValue"/>
-                <Input type="number" :label="'Height'" input-id="height" :get-value="getValue" :set-value="setValue"/>
-                <!-- <Input type="number" :label="'height'" :value="appConfig.mainConfig.height" :value-change="valueChange"/> -->
-
-                color picker
-                <div>
-                    Shape
-                    <div>
-                        Regular Shapes
-                        <button style="display: block;" @click="focusObject(appConfig.listLayer.currentLayer.addObject('Rect'))">Rectangle</button>
-                        <button style="display: block;" @click="focusObject(appConfig.listLayer.currentLayer.addObject('Ellipse'))">Ellipse</button>
-                        <button style="display: block;" @click="focusObject(appConfig.listLayer.currentLayer.addObject('Circle'))">Circle</button>
-                        <button style="display: block;" @click="focusObject(appConfig.listLayer.currentLayer.addObject('Wedge'))">Wedge</button>
-                        <button style="display: block;" @click="focusObject(appConfig.listLayer.currentLayer.addObject('Star'))">Star</button>
-                        <button style="display: block;" @click="focusObject(appConfig.listLayer.currentLayer.addObject('RegularPolygon'))">RegularPolygon</button>
-                    </div>
-                    <div>
-                        Line Polygon
-                        <button style="display: block;" @click="drawLine()">Draw Line</button>
-                        {{appConfig == null ? "" : appConfig.mode}}
-                        <button style="display: block;" @click="drawPolygon()" v-if="appConfig && appConfig.mode != 'draw-polygon'">Draw Polygon</button>
-                        <button style="display: block;" @click="stopDrawPolygon()" v-if="appConfig && appConfig.mode == 'draw-polygon'">Stop Draw Polygon</button>
-                    </div>
-                    <div>
-                        Image
-                        <button style="display: block;" @click="loadImage()">Load Image</button>
-                        <button style="display: block;" @click="loadImageFromCollection()">Load Image From Collection</button>
-                        <input type="text" v-model="urlImage">
-                        <button style="display: block;" @click="loadImage(urlImage)">Load Image</button>
-                    </div>
-                    <div>
-                        Text
-                        <input type="text" v-model="newText">
-                        <button style="display: block;" @click="focusObject(appConfig.listLayer.currentLayer.addObject('Text', {text: newText || 'Default Text'}));newText=''">Add Text</button>
-                    </div>
+<div>
+    <div class="item">
+        <div class="item-icon">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+        <Input type="number" :label="'W'" input-id="width" :get-value="getValue" :set-value="setValue"/>
+        <Input type="number" :label="'H'" input-id="height" :get-value="getValue" :set-value="setValue"/>
+    </div>
+    <div class="item">
+        <div class="item-icon">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+        <div class="item-icon option" @click="focusObject(appConfig.listLayer.currentLayer.addObject('Rect'))">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+        <div class="item-icon option" @click="focusObject(appConfig.listLayer.currentLayer.addObject('Ellipse'))">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+        <div class="item-icon option" @click="focusObject(appConfig.listLayer.currentLayer.addObject('Circle'))">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+        <div class="item-icon option" @click="focusObject(appConfig.listLayer.currentLayer.addObject('Wedge'))">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+        <div class="item-icon option" @click="focusObject(appConfig.listLayer.currentLayer.addObject('Star'))">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+        <div class="item-icon option" @click="focusObject(appConfig.listLayer.currentLayer.addObject('RegularPolygon'))">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+    </div>
+      <div class="item">
+        <div class="item-icon">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+        <div class="item-icon option" @click="drawLine()">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+        <div class="item-icon option" @click="drawPolygon()" v-if="appConfig && appConfig.mode != 'draw-polygon'">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+       <div class="item-icon option" @click="stopDrawPolygon()" v-if="appConfig && appConfig.mode == 'draw-polygon'">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+    </div>
+    <div class="item">
+        <div class="item-icon">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+        <div class="item-icon option" @click="loadImage()">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+        <div class="item-icon option" @click="loadImageFromCollection()">
+            <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+            </svg>
+        </div>
+        <div style="width: 100%">
+            <div style="width: 100%">
+                <div></div>
+                <div style="width: 100%">
+                    <input class="inputUpload" type="text" v-model="urlImage">
                 </div>
-                <div>
+                <div class="item-icon" @click="loadImage(urlImage)">
+                    <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                        <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+    <div class="item" style="border: none;">
+        <div class="item-icon">
+          <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+            <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+          </svg>
+        </div>
+        <div style="width: 100%">
+            <div style="width: 100%">
+                <div></div>
+                <div style="width: 100%">
+                    <input class="inputUpload" type="text" v-model="newText">
+                </div>
+                <div class="item-icon" @click="focusObject(appConfig.listLayer.currentLayer.addObject('Text', {text: newText || 'Default Text'}));newText=''">
+                    <svg  x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" xml:space="preserve">
+                        <path d="M256,0C115.03,0,0,115.05,0,256c0,140.97,115.05,256,256,256c140.97,0,256-115.05,256-256C512,115.03,396.95,0,256,0z     M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30s226,101.383,226,226S380.617,482,256,482z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+    <!-- Phần này k hiểu -->
+    <div style="display: none;">
+        <div>
                     layer
                     <input type="text" v-model="newLayerName">
                     <button @click="appConfig.listLayer.addLayer(newLayerName);newLayerName=''">Add layer</button>
@@ -56,13 +142,12 @@
                     multiple Select
                     <button @click="multipleSelect">Select</button>
                 </div>
-            </div>
-        </div>
-        <!-- <div>
-            AppProperties
-            <AppProperties v-if="appConfig != null && appConfig.currentFocus != null" :shape="appConfig.currentFocus"></AppProperties>
-        </div> -->
+        
     </div>
+    <!-- Hết phần không hiểu -->
+</div>
+    
+    
 </template>
 
 <script>
@@ -223,3 +308,89 @@ export default {
     }
 }
 </script>
+<style lang="less">
+.item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin: 0 -20px 15px -20px;
+    height: 40px;
+    &>div>div {
+        display: flex;
+        position: relative;
+        &>*:nth-child(1)
+        {
+           position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 15px;
+            margin: 0;
+            opacity: 0.5;
+        }
+        &>*:nth-child(3)
+        {
+           position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 15px;
+            margin: 0;
+            opacity: 0.5;
+        }
+    }
+}
+.item-icon {
+    width: 18px;
+    min-width: 18px;
+    height: 18px;
+    min-height: 18px;
+    margin: 0 15px 0 20px;
+    transition: all ease-in-out 0.2s;
+    box-shadow: 0 0 0 10px #fff;
+    background: #fff;
+    cursor: pointer;
+    &.option {
+        opacity: 0.5;
+        margin-left: 15px;
+    }
+    &:hover {
+        color: #0573c7;
+    opacity: 1;
+    box-shadow: 0 0 0 10px #0573c715;
+    background: #0573c715;
+    border-radius: 1px;
+    transition: all ease-in-out 0.2s;
+    }
+}
+.inputUpload {
+    padding-right: 42px !important;
+    padding-left: 15px  !important;
+    width: 100% !important;
+}
+
+input[type='text'], input[type='search'], input[type='password'], input[type='email'], input[type='url'], input[type='tel'], .selectize-input, .ql-container .ql-editor, select, .input-with-prefix {
+    font-weight: 400;
+    width: 120px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    max-height: 40px;
+    min-height: 40px;
+    padding: 11px 16px 11px 40px;
+    outline: none;
+    border-radius: 5px;
+    -webkit-transition: background-color 200ms ease, outline 200ms ease, color 200ms ease, -webkit-box-shadow 200ms ease;
+    transition: background-color 200ms ease, outline 200ms ease, color 200ms ease, -webkit-box-shadow 200ms ease;
+    transition: background-color 200ms ease, outline 200ms ease, color 200ms ease, box-shadow 200ms ease;
+    transition: background-color 200ms ease, outline 200ms ease, color 200ms ease, box-shadow 200ms ease, -webkit-box-shadow 200ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid transparent !important;
+    background: transparent;
+}
+input:hover[type='text'], input:hover[type='search'], input:hover[type='password'], input:hover[type='email'], input:hover[type='url'], input:hover[type='tel'], .selectize-input:hover, .ql-container .ql-editor:hover, select:hover, .input-with-prefix:hover {
+    background-color: #fff !important;
+    border-color: #0573c7 !important;
+    box-shadow: 0 0 0 4px #0573c738 !important;
+}
+</style>

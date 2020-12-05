@@ -8,8 +8,8 @@ export class AppConfig {
         this.project = project
         const _projectInfo = JSON.parse(project.projectInfo)
         this.mainConfig = _projectInfo.attrs || {
-            width: 1440,
-            height: 1080,
+            width: 600,
+            height: 900,
             color: "rgba(255, 255, 255, 1)"
         }
         this.listLayer = new LayerList(_projectInfo.children)
