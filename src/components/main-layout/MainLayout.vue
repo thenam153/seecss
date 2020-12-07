@@ -5,6 +5,8 @@
     </div>
     <div class="setting">
     <Control v-if="appConfig != null" :app-config="appConfig" />
+    <div></div>
+    <TopNav v-if="appConfig != null" :app-config="appConfig"/>
 
     <div class="tab">
       <div class="item-icon" style="padding: 0 15px 20px 0;margin: 0;">
@@ -13,11 +15,10 @@
           </svg>
         </div>
       <div class="active">Configuration</div>
-      <div>Properties</div>
-      <div></div>
+      <!-- <div>Properties</div> -->
+      <!-- <div></div> -->
     </div>
-      <TopNav v-if="appConfig != null" :app-config="appConfig"/>
-      <!-- <AppProperties v-if="appConfig != null && appConfig.currentFocus != null" :shape="appConfig.currentFocus"></AppProperties> -->
+      <AppProperties v-if="appConfig != null && appConfig.currentFocus != null" :shape="appConfig.currentFocus"></AppProperties>
     </div>
   </div>
 </template>
@@ -44,9 +45,9 @@ export default {
       appConfig: null,
       defaultConfig: {
         attrs: {
-          width: 600,
-          height: 900,
-          color: "rgb(255, 255, 255)",
+            width: 1440,
+            height: 1080,
+            color: "rgb(255, 255, 255)"
         },
         children: {
           attrs: {
